@@ -50,8 +50,13 @@ flatpickr(myInputEl, {
         Notiflix.Notify.success("Well done");
 
         const interval = setInterval(() => {
+
+            makeDisableDate();
             currentDate = Date.now()
             let makeInterval = selectedDates[0] - currentDate;
+            if (makeInterval < 0) {
+                return
+            }
 
             let timer = convertMs(makeInterval)
             daysEl.textContent = addLeadingZero(timer.days)
