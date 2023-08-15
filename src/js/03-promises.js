@@ -61,7 +61,9 @@ function handelSubmit(e) {
   let position = 0;
 
   setTimeout(() => {
+
     const stopInterval = setInterval(() => {
+
       position += 1;
 
       createPromise({ firstDelay, step, position }).then(({ position, delay }) => {
@@ -69,13 +71,26 @@ function handelSubmit(e) {
       }).catch(({ position, delay }) => {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
       });
+      makeDisableDate()
       if (position === amount) {
         clearInterval(stopInterval)
+        removeAttributeBtn()
+
       }
     }, step)
-  }, firstDelay)
+
+
+  }, firstDelay + step)
+
+  refs.formEl.reset()
+
 
 }
+function removeAttributeBtn() {
+  refs.submit.removeAttribute("disabled", "disabled");
+}
 
-
+function makeDisableDate() {
+  refs.submit.setAttribute("disabled", "disabled");
+};
 
