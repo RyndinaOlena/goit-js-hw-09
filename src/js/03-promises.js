@@ -59,7 +59,7 @@ function handelSubmit(e) {
   let step = Number(refs.inputStep.value);
   let amount = Number(refs.inputAmount.value);
   let position = 0;
-
+  makeDisableDate()
   setTimeout(() => {
 
     const stopInterval = setInterval(() => {
@@ -71,7 +71,7 @@ function handelSubmit(e) {
       }).catch(({ position, delay }) => {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
       });
-      makeDisableDate()
+
       if (position === amount) {
         clearInterval(stopInterval)
         removeAttributeBtn()
