@@ -80,7 +80,7 @@ function handelSubmit(e) {
     }, step)
 
 
-  }, firstDelay + step)
+  }, firstDelay)
 
   refs.formEl.reset()
 
