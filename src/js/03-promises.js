@@ -84,6 +84,9 @@ const submit = document.querySelector('button')
 
 form.addEventListener('submit', handleSubmit);
 
+
+
+
 function handleSubmit(e) {
   e.preventDefault();
   let position = 0;
@@ -92,31 +95,30 @@ function handleSubmit(e) {
   } = e.currentTarget;
 
   let totalDelay = parseInt(delay.value);
+  console.log(totalDelay)
 
 
 
-  submit.setAttribute("disabled", "disabled")
-  // console.log(`delay: ${delay.value}`);
-  // console.log(`step: ${step.value}`);
-  // console.log(`amount: ${amount.value}`);
 
-  for (let i = 1; i <= amount.value; i++) {
-    position += 1
+  let parceAmount = parseInt(amount.value)
 
-    createPromise(i, totalDelay).then(onSuccess).catch(onError);
-    totalDelay += parseInt(step.value);
+  for (let i = 1; i <= parceAmount; i++) {
 
-    if (position === amount.value) {
+    submit.setAttribute("disabled", "disabled")
+
+    console.log(position)
+    console.log(parceAmount)
+    if (position === parceAmount) {
       console.log('qwe')
-      submit.setAttribute("disabled", "disabled");
-      form.reset()
+      submit.removeAttribute("disabled", "disabled");
       return
     }
-
-
-
+    createPromise(i, totalDelay).then(onSuccess).catch(onError);
+    totalDelay += parseInt(step.value);
+    //submit.removeAttribute("disabled", "disabled");
   }
 
+  form.reset()
 
 }
 
